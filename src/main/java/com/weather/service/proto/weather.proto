@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_package = "com.weather.service";
+option java_outer_classname = "WeatherProto";
+
+service WeatherService {
+  rpc GetCurrentWeather (WeatherRequest) returns (WeatherResponse);
+  rpc GetWeatherForecast (WeatherForecastRequest) returns (WeatherForecastResponse);
+}
+
+message WeatherRequest {
+  string city = 1;
+}
+
+message WeatherResponse {
+  string date = 1;
+  string weather = 2;
+  double temperature = 3;
+}
+
+message WeatherForecastRequest {
+  string city = 1;
+}
+
+message WeatherForecastResponse {
+  string date = 1;
+  string weather = 2;
+  double temperature = 3;
+}
