@@ -30,14 +30,17 @@ class WeatherTest {
 
     @Test
     void convertToTime() {
-        System.out.println(convertToTime(1735473115));
-        System.out.println(273.91- 273.15);
-    }
-
-    private String convertToTime(long time) {
+        long time = 1735473115;
         Instant instant = Instant.ofEpochSecond(time);
         ZonedDateTime dateTime = instant.atZone(ZoneId.of("Asia/Seoul"));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return dateTime.format(formatter);
+        System.out.println(dateTime.format(formatter));
+        System.out.println(273.91- 273.15);
+    }
+
+    @Test
+    void convertCelsius() {
+        double kelvin = 279.91;
+        System.out.printf("%d°C%n", (int) (kelvin - 273.15));
     }
 }

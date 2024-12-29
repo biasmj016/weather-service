@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-class CheckWeatherUseCaseTest {
+class CheckWeatherTest {
 
     @Mock
     private WeatherRepository weatherRepository;
