@@ -1,6 +1,7 @@
 package com.weather.service.infrastructure.out.api.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.weather.service.domain.Weather;
 
 import java.util.List;
 
@@ -39,4 +40,21 @@ public record WeatherApiResponse(
             @JsonProperty("sunrise") long sunrise,
             @JsonProperty("sunset") long sunset
     ) {}
+
+   public Weather toWeather() {
+        Weathers weathers = this.weather.getFirst();
+        return new Weather(
+                name,
+                dt,
+                weathers.main(),
+                weathers.description(),
+                main.temp(),
+                main.tempMin(),
+                main.tempMax(),
+                main.humidity(),
+                wind.speed(),
+                systemInfo.sunrise(),
+                systemInfo.sunset()
+        );
+    }
 }
