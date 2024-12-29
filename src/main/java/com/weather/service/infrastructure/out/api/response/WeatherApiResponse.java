@@ -5,31 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public record WeatherApiResponse(
-        @JsonProperty("coord") Coordinates coordinates,
-        @JsonProperty("weather") List<Weather> weather,
-        @JsonProperty("base") String base,
+        @JsonProperty("weather") List<Weathers> weather,
         @JsonProperty("main") WeatherMetrics main,
-        @JsonProperty("visibility") int visibility,
         @JsonProperty("wind") Wind wind,
-        @JsonProperty("clouds") Clouds clouds,
-        @JsonProperty("dt") int dt,
+        @JsonProperty("dt") long dt,
         @JsonProperty("sys") WeatherSystemInfo systemInfo,
-        @JsonProperty("timezone") int timezone,
-        @JsonProperty("id") int id,
-        @JsonProperty("name") String name,
-        @JsonProperty("cod") int cod
+        @JsonProperty("name") String name
 ) {
 
-    record Coordinates(
-            @JsonProperty("lon") double longitude,
-            @JsonProperty("lat") double latitude
-    ) {}
-
-    record Weather(
-            @JsonProperty("id") int id,
+    record Weathers(
             @JsonProperty("main") String main,
-            @JsonProperty("description") String description,
-            @JsonProperty("icon") String icon
+            @JsonProperty("description") String description
     ) {}
 
     record WeatherMetrics(
@@ -48,13 +34,7 @@ public record WeatherApiResponse(
             @JsonProperty("deg") int deg
     ) {}
 
-    record Clouds(
-            @JsonProperty("all") int all
-    ) {}
-
     record WeatherSystemInfo(
-            @JsonProperty("type") int type,
-            @JsonProperty("id") int id,
             @JsonProperty("country") String country,
             @JsonProperty("sunrise") long sunrise,
             @JsonProperty("sunset") long sunset
