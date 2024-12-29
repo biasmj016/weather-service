@@ -1,27 +1,31 @@
 package com.weather.service.application.in;
 
-import com.weather.service.application.in.request.CheckWeatherRequest;
 import com.weather.service.application.out.WeatherRepository;
 import com.weather.service.domain.Weather;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.weather.service.infrastructure.out.api.WeatherApiClient;
 import org.springframework.stereotype.Service;
 
 public interface CheckWeather {
-    Weather check(CheckWeatherRequest request);
+    Weather check(String city);
 
     @Service
     class CheckWeatherUseCase implements CheckWeather {
         private final WeatherRepository repository;
-        private final Logger logger = LoggerFactory.getLogger(this.getClass());
+        private final WeatherApiClient weatherApiClient;
 
-        public CheckWeatherUseCase(WeatherRepository repository) {
+        public CheckWeatherUseCase(WeatherRepository repository, WeatherApiClient weatherApiClient) {
             this.repository = repository;
+            this.weatherApiClient = weatherApiClient;
         }
 
         @Override
-        public Weather check(CheckWeatherRequest request) {
-            return repository.getCurrentWeather(request.city()).get();
+        public Weather check(String city) {
+            return repository.getCurrentWeather(city)
+                    .orElseGet(() -> {
+                        Weather fetchedWeather = weatherApiClient.fetchWeather(city).toWeather();
+                        repository.save(fetchedWeather);
+                        return fetchedWeather;
+                    });
         }
     }
 }

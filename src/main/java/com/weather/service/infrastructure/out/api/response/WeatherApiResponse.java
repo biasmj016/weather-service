@@ -14,12 +14,12 @@ public record WeatherApiResponse(
         @JsonProperty("name") String name
 ) {
 
-    record Weathers(
+    public record Weathers(
             @JsonProperty("main") String main,
             @JsonProperty("description") String description
     ) {}
 
-    record WeatherMetrics(
+    public record WeatherMetrics(
             @JsonProperty("temp") double temp,
             @JsonProperty("feels_like") double feelsLike,
             @JsonProperty("temp_min") double tempMin,
@@ -30,12 +30,12 @@ public record WeatherApiResponse(
             @JsonProperty("grnd_level") int groundLevel
     ) {}
 
-    record Wind(
+    public record Wind(
             @JsonProperty("speed") double speed,
             @JsonProperty("deg") int deg
     ) {}
 
-    record WeatherSystemInfo(
+    public record WeatherSystemInfo(
             @JsonProperty("country") String country,
             @JsonProperty("sunrise") long sunrise,
             @JsonProperty("sunset") long sunset
