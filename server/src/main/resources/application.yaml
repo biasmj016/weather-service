@@ -1,0 +1,4 @@
+weather:
+  base:
+    apiKey: YOUR_API_KEY
+    url: https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}&lang=kr
