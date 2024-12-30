@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+service WeatherUseCase {
+  rpc GetCurrentWeather (WeatherRequest) returns (WeatherResponse);
+}
+
+message WeatherRequest {
+  string city = 1;
+}
+
+message WeatherResponse {
+  string city = 1;
+  string date = 2;
+  string weather = 3;
+  string temperature = 4;
+  string temperatureMin = 5;
+  string temperatureMax = 6;
+  int32 humidity = 7;
+  double windSpeed = 8;
+  string sunrise = 9;
+  string sunset = 10;
+}
