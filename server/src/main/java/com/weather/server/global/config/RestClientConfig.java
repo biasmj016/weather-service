@@ -1,4 +1,4 @@
-package com.weather.server.config;
+package com.weather.server.global.config;
 
 import jakarta.validation.constraints.NotNull;
 import org.slf4j.Logger;
